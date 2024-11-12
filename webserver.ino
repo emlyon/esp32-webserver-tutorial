@@ -47,6 +47,13 @@ void setup()
     Serial.println("GET /");                                   // for debugging
     request->send(LittleFS, "/index.html", "text/html"); });
 
+  // Define a route to serve the CSS file
+  server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request)
+            {
+    Serial.println("ESP32 Web Server: New request received:"); // for debugging
+    Serial.println("GET /style.css");                          // for debugging
+    request->send(LittleFS, "/css/style.css", "text/css"); });
+
   // Start the server
   server.begin();
 }
